@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('vending_machines', function (Blueprint $table) {
             $table->id();
             $table->string('location');
-            $table->enum('status' , ['Active' , 'inactive'])->default('active');
+            $table->enum('status' , ['active' , 'inactive'])->default('active');
             $table->timestamps();
         });
     }

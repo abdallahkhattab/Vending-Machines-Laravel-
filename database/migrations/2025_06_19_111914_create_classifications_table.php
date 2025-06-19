@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('classifications', function (Blueprint $table) {
             $table->id();
-            $table->string('name')->unique();
+            $table->string('name')->unique(); //senior , med , junior , fresh , ceo , manager
             $table->integer('daily_juice_limit')->default(0);
             $table->integer('daily_meal_limit')->default(0);
             $table->integer('daily_snack_limit')->default(0);
