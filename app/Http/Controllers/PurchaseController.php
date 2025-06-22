@@ -21,7 +21,7 @@ class PurchaseController extends Controller
 
         try {
 
-        $employee = Employee::where('card_number' , $data['card_number'])
+        $employee = Employee::where('card_number' , $request->card_number)
                     ->where('status' , 'active')
                     ->first();
 
@@ -34,7 +34,7 @@ class PurchaseController extends Controller
             }
 
           // Find vending machine
-        $machine = VendingMachine::where('id', $data['machine_id'])
+        $machine = VendingMachine::where('id', $request->machine_id)
                 ->where('status', 'active')
                 ->first();
 
