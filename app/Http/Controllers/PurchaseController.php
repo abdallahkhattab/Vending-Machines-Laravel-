@@ -14,105 +14,106 @@ use App\Http\Requests\purchaseRequest;
 
 class PurchaseController extends Controller
 {
-    public function purchase(purchaseRequest $request) : JsonResponse 
-    {
+public function purchase(Request $request): JsonResponse
+{
+    $request->validate([
+        'user_id' => 'required|string',
+        'machine_id' => 'required|integer',
+        'slot_number' => 'required|integer',
+        'product_price' => 'required|integer|min:0',
+    ]);
 
-        $data = $request->validated();
+    $employee = null; // Initialize $employee to null
+    try {
+        // Find employee by card number
+        $employee = Employee::where('card_number', $request->user_id)
+            ->where('status', 'active')
+            ->first();
 
-        try {
+        if (!$employee) {
+            $this->logTransaction(null, $request, 'failure', 'Invalid card number');
+            return response()->json([
+                'success' => false,
+                'message' => 'Invalid card number or inactive employee'
+            ], 400);
+        }
 
-        $employee = Employee::where('card_number' , $request->card_number)
-                    ->where('status' , 'active')
-                    ->first();
-
-            if (!$employee) {
-                $this->logTransaction(null, $request, 'failure', 'Invalid card number');
-                return response()->json([
-                    'success' => false,
-                    'message' => 'Invalid card number or inactive employee'
-                ], 400);
-            }
-
-          // Find vending machine
+        // Find vending machine
         $machine = VendingMachine::where('id', $request->machine_id)
-                ->where('status', 'active')
-                ->first();
+            ->where('status', 'active')
+            ->first();
 
-            if (!$machine) {
-                $this->logTransaction($employee->id, $request, 'failure', 'Invalid machine ID');
-                return response()->json([
-                    'success' => false,
-                    'message' => 'Invalid or inactive vending machine'
-                ], 400);
-            }
-    
-          // Find slot
-            $slot = Slot::where('machine_id', $request->machine_id)
-                ->where('slot_number', $request->slot_number)
-                ->first();
+        if (!$machine) {
+            $this->logTransaction($employee->id, $request, 'failure', 'Invalid machine ID');
+            return response()->json([
+                'success' => false,
+                'message' => 'Invalid or inactive vending machine'
+            ], 400);
+        }
 
-             if (!$slot) {
-                $this->logTransaction($employee->id, $request, 'failure', 'Invalid slot number');
-                return response()->json([
-                    'success' => false,
-                    'message' => 'Invalid slot number'
-                ], 400);
-            }  
-            
-            
-            // Validate price
-            if ($request->product_price != $slot->price) {
-                $this->logTransaction($employee->id, $request, 'failure', 'Price mismatch');
-                return response()->json([
-                    'success' => false,
-                    'message' => 'Product price mismatch'
-                ], 400);
-            }
+        // Find slot
+        $slot = Slot::where('machine_id', $request->machine_id)
+            ->where('slot_number', $request->slot_number)
+            ->first();
 
-            // Process purchase
-            $result = $employee->processPurchase($slot, $request->product_price);
+        if (!$slot) {
+            $this->logTransaction($employee->id, $request, 'failure', 'Invalid slot number');
+            return response()->json([
+                'success' => false,
+                'message' => 'Invalid slot number'
+            ], 400);
+        }
 
-                if ($result['can_purchase']) {
-                $this->logTransaction(
-                    $employee->id,
-                    $request,
-                    'success',
-                    null,
-                    $slot->id,
-                    $request->product_price
-                );
+        // Validate price
+        if ($request->product_price != $slot->price) {
+            $this->logTransaction($employee->id, $request, 'failure', 'Price mismatch');
+            return response()->json([
+                'success' => false,
+                'message' => 'Product price mismatch'
+            ], 400);
+        }
 
-                return response()->json([
-                    'success' => true,
-                    'message' => 'Purchase successful',
-                    'remaining_balance' => $employee->current_balance,
-                    'product_dispensed' => $slot->product_name ?? "Slot {$slot->slot_number}"
-                ]);
-                } else {
-                $this->logTransaction($employee->id, $request, 'failure', $result['reason'], $slot->id);
-                return response()->json([
-                    'success' => false,
-                    'message' => $result['reason']
-                ], 400);
-            }
+        // Process purchase
+        $result = $employee->processPurchase($slot, $request->product_price);
 
-        }catch(Exception $e) {
-
-                $this->logTransaction(
-                $employee->id ?? null,
+        if ($result['can_purchase']) {
+            $this->logTransaction(
+                $employee->id,
                 $request,
-                'failure',
-                'System error: ' . $e->getMessage()
+                'success',
+                null,
+                $slot->id,
+                $request->product_price
             );
 
             return response()->json([
+                'success' => true,
+                'message' => 'Purchase successful',
+                'remaining_balance' => $employee->current_balance,
+                'product_dispensed' => $slot->product_name ?? "Slot {$slot->slot_number}"
+            ]);
+        } else {
+            $this->logTransaction($employee->id, $request, 'failure', $result['reason'], $slot->id);
+            return response()->json([
                 'success' => false,
-                'message' => 'System error occurred'
-            ], 500);
-
+                'message' => $result['reason']
+            ], 400);
         }
-    }
 
+    } catch (\Exception $e) {
+        $this->logTransaction(
+            $employee ? $employee->id : null,
+            $request,
+            'failure',
+            'System error: ' . $e->getMessage()
+        );
+
+        return response()->json([
+            'success' => false,
+            'message' => 'System error occurred'
+        ], 500);
+    }
+}
     public function getEmployeeBalance(Request $request) : JsonResponse
     {
 

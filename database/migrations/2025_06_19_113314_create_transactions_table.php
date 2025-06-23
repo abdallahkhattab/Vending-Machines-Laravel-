@@ -13,9 +13,9 @@ return new class extends Migration
     {
         Schema::create('transactions', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('employee_id')->constrained()->onDelete('cascade');
+            $table->foreignId('employee_id')->nullable()->constrained()->onDelete('cascade');
             $table->foreignId('machine_id')->constrained('vending_machines')->onDelete('cascade');
-            $table->foreignId('slot_id')->constrained()->onDelete('cascade');
+            $table->foreignId('slot_id')->nullable()->constrained()->onDelete('cascade');
             $table->integer('points_deducted')->default(0);
             $table->enum('status', ['success', 'failure']);
             $table->string('failure_reason')->nullable();
