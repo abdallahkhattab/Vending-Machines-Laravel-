@@ -1,6 +1,4 @@
-Apologies for the misunderstanding. Below is a properly formatted `README.md` file for the Employee Purchase System, written in Markdown and following the provided Laravel README structure. This file includes all necessary details about the project, installation instructions, API endpoints, and features, tailored to the code you shared.
 
-```markdown
 <p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
 
 <p align="center">
