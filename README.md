@@ -164,5 +164,3 @@ The Employee Purchase System is open-sourced software licensed under the [MIT li
 - Built with [Laravel](https://laravel.com) and [Filament](https://filamentphp.com)
 - Inspired by modern vending machine management needs
 ```
-
-This `README.md` file is structured to provide clear instructions for setup, usage, and understanding of the Employee Purchase System. Save it in the root of your project directory. Let me know if you need further adjustments or additional sections!

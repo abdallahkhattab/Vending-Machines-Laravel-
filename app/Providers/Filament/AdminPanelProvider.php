@@ -29,11 +29,11 @@ class AdminPanelProvider extends PanelProvider
             
         ->brandLogo(asset('assets/vending.png'))
         ->favicon(asset('assets/vending.png'))
-->font('Poppins')
+        ->font('Poppins')
 
             ->login()
             ->colors([
-                  'danger' => Color::Rose,
+            'danger' => Color::Rose,
             'gray' => Color::Gray,
             'info' => Color::Blue,
             'primary' => Color::Indigo,
