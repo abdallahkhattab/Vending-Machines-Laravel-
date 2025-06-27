@@ -4,7 +4,8 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Employee Purchase System - Laravel & Filament</title>
-    
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.bunny.net">
     <link href="https://fonts.bunny.net/css?family=inter:300,400,500,600,700&display=swap" rel="stylesheet" />
@@ -451,8 +452,8 @@
                     <li><a href="#features">Features</a></li>
                     <li><a href="#tech">Technology</a></li>
                     <li><a href="#developer">Developer</a></li>
-                </ul>
-                <a href="/admin" class="cta-button">Go to Dashboard</a>
+                </ul>admin@gmail.com
+                <a href="https://nawasrah.site/employees-payment/admin/login" class="cta-button">Go to Dashboard</a>
             </nav>
         </div>
     </header>
@@ -476,7 +477,7 @@
 
             <!-- Buttons -->
             <div class="hero-buttons animate-fadeInUp animate-delay-3 mt-6">
-                <a href="/admin" class="btn-primary">Access Dashboard</a>
+                <a href="https://nawasrah.site/employees-payment/admin/login" class="btn-primary">Access Dashboard</a>
                 <a href="#features" class="btn-secondary">Explore Features</a>
             </div>
         </div>
@@ -596,7 +597,7 @@
                     Access the powerful Filament admin dashboard to manage employees, vending machines, 
                     and monitor all transactions in real-time.
                 </p>
-                <a href="/admin" class="cta-button" style="font-size: 1.1rem; padding: 1rem 3rem;">
+                <a href="https://nawasrah.site/employees-payment/admin/login" class="cta-button" style="font-size: 1.1rem; padding: 1rem 3rem;">
                     Launch Dashboard
                 </a>
             </div>
