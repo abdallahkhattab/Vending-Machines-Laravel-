@@ -72,52 +72,57 @@ The system leverages Laravel's powerful features like Eloquent ORM, migrations, 
 
 
 
+Got it! Here’s your **Installation** section rewritten in the **same format** with the `git clone` step added as step 1, keeping your numbering style consistent:
+
+---
+
 ## Installation
 
 To set up the Employee Purchase System, follow these steps:
 
-1. **Create a new Laravel project and install dependencies**:
-   ```bash
-   composer create-project laravel/laravel employee-purchase-system
-   cd employee-purchase-system
-   composer require filament/filament:"^3.0" filament/tables:"^3.0" filament/forms:"^3.0" filament/notifications:"^3.0"
-   ```
+1. **Clone the repository**:
 
-2. **Install Filament Admin Panel**:
-   ```bash
-   php artisan filament:install --panels
-   ```
+```bash
+git clone https://github.com/abdallahkhattab/Vending-Machines-Laravel-.git
+cd employee-purchase-system
+```
 
-3. **Create an admin user**:
-   ```bash
-   php artisan make:filament-user
-   ```
+2. **Install PHP dependencies**:
 
-4. **Set up the application**:
-   - Copy the migration files to `database/migrations/`
-   - Copy the model files to `app/Models/`
-   - Copy the API controller to `app/Http/Controllers/Api/`
-   - Copy Filament resources to `app/Filament/Resources/`
-   - Copy the widget to `app/Filament/Widgets/`
-   - Copy the seeder to `database/seeders/`
-   - Copy the console command to `app/Console/Commands/`
-   - Add API routes to `routes/api.php`
-   - Update `app/Console/Kernel.php` with the scheduled recharge command
-   - Configure `app/Providers/Filament/AdminPanelProvider.php`
+```bash
+composer install
+```
+
+3. **Install Filament Admin Panel**:
+
+```bash
+php artisan filament:install --panels
+```
+
+4. **Create an admin user**:
+
+```bash
+php artisan make:filament-user
+```
 
 5. **Run migrations and seed the database**:
-   ```bash
-   php artisan migrate
-   php artisan db:seed
-   ```
+
+```bash
+php artisan migrate
+php artisan db:seed
+```
 
 6. **Start the development server**:
-   ```bash
-   php artisan serve
-   ```
+
+```bash
+php artisan serve
+```
 
 7. **Access the admin panel**:
    Visit `http://localhost:8000/admin`
+
+
+
 
 ## API Endpoints
 
