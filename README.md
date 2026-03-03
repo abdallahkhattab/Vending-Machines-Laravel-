@@ -70,10 +70,6 @@ The system leverages Laravel's powerful features like Eloquent ORM, migrations, 
   <img src="images/17.png" width="60%">
 </p>
 
-
-
-Got it! Here’s your **Installation** section rewritten in the **same format** with the `git clone` step added as step 1, keeping your numbering style consistent:
-
 ---
 
 ## Installation
