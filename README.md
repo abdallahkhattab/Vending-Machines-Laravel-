@@ -24,6 +24,54 @@ The **Employee Purchase System** is a Laravel-based application designed to mana
 
 The system leverages Laravel's powerful features like Eloquent ORM, migrations, and Filament for the admin interface, ensuring a scalable and maintainable codebase.
 
+## 📸 Project Screenshots
+
+<p align="center">
+  <img src="images/1.png" width="45%">
+  <img src="images/2.png" width="45%">
+</p>
+
+<p align="center">
+  <img src="images/3.png" width="45%">
+  <img src="images/4.png" width="45%">
+</p>
+
+<p align="center">
+  <img src="images/5.png" width="45%">
+  <img src="images/6.png" width="45%">
+</p>
+
+<p align="center">
+  <img src="images/7.png" width="45%">
+  <img src="images/8.png" width="45%">
+</p>
+
+<p align="center">
+  <img src="images/9.png" width="45%">
+  <img src="images/10.png" width="45%">
+</p>
+
+<p align="center">
+  <img src="images/11.png" width="45%">
+  <img src="images/12.png" width="45%">
+</p>
+
+<p align="center">
+  <img src="images/13.png" width="45%">
+  <img src="images/14.png" width="45%">
+</p>
+
+<p align="center">
+  <img src="images/15.png" width="45%">
+  <img src="images/16.png" width="45%">
+</p>
+
+<p align="center">
+  <img src="images/17.png" width="60%">
+</p>
+
+
+
 ## Installation
 
 To set up the Employee Purchase System, follow these steps:
